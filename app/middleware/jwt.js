@@ -1,22 +1,19 @@
 const jwt = require('jsonwebtoken');
 const { NoCheckList } = require('../constant');
-// const searchSql = require('./utils/searchSql');
 /* jwt密钥 */
-const secret = 'console';
+const secret = 'box';
 
 /* token验证 异常处理 */
 module.exports = () => async (ctx, next) => {
-  console.log(ctx.request);
   const token = ctx.header.authorization;
+  console.log(ctx.app, token);
   if (!NoCheckList.includes(ctx.request.url)) {
     try {
       const user = await jwt.verify(token, secret);
       if (user) {
-      // const userInfo = await searchSql(`SELECT * FROM user WHERE id="${user.id}"`);
-      // 解析完应该放到state中
-      // ctx.state.userInfo = userInfo[0];
-        ctx.state.userInfo = '789';
-        console.log(ctx.state);
+        const userInfo = await ctx.app.mysql.query(`SELECT id,name,password FROM user WHERE name = "${user.name}"`);
+        // 解析完应该放到state中
+        ctx.state.userInfo = userInfo[0];
         await next();
       }
     } catch (error) {
@@ -30,8 +27,3 @@ module.exports = () => async (ctx, next) => {
     await next();
   }
 };
-// /* 获取token */
-// const getToken = (payload = {}) => {
-//   return jwt.sign(payload, secret, { expiresIn: '24h' });
-// };
-

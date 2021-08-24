@@ -22,6 +22,25 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.mysql = {
+    // database configuration
+    client: {
+      // host
+      host: '121.4.83.203',
+      // port
+      port: '3306',
+      // username
+      user: 'root',
+      // password
+      password: '',
+      // database
+      database: 'box-community',
+    },
+    // load into app, default is open
+    app: true,
+    // load into agent, default is close
+    agent: false,
+  };
   return {
     ...config,
     ...userConfig,

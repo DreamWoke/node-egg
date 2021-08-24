@@ -7,7 +7,7 @@ module.exports = {
     extends: "eslint-config-egg",
     parser: "babel-eslint",
     parserOptions: {
-      ecmaVersion: 2018,
+      ecmaVersion: 6,
       sourceType: "module"
   },
   ecmaFeatures: {

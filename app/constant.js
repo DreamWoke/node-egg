@@ -1,4 +1,4 @@
-const NoCheckList = [ '/', '/login' ];
+const NoCheckList = [ '/', '/api/user/login' ];
 
 module.exports = {
   NoCheckList,
