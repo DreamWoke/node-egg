@@ -32,7 +32,7 @@ module.exports = appInfo => {
       // username
       user: 'root',
       // password
-      password: '',
+      password: 'qyj3312938',
       // database
       database: 'box-community',
     },

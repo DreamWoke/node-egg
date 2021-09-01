@@ -13,6 +13,7 @@ module.exports = () => async (ctx, next) => {
       if (user) {
         const userInfo = await ctx.app.mysql.query(`SELECT id,name,password FROM user WHERE name = "${user.name}"`);
         // 解析完应该放到state中
+        console.log(userInfo);
         ctx.state.userInfo = userInfo[0];
         await next();
       }
